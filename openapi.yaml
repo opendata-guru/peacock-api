@@ -1,0 +1,21 @@
+openapi: "3.0.3"
+info:
+  title: Europäisches OpenData-Portal Schnittstelle
+  description: >-
+    Dies ist die Beschreibung für die Schnittstelle zum Zugriff auf die Daten des Europäischen OpenData-Portals im Rahmen der OpenData Initiative.
+
+
+    Deaktivierung:
+      Die Schnittstelle kann deaktiviert werden, in dem Fall wird ein leeres JSON zurückgegeben.
+
+    Fehlerfall:
+     Im Fehlerfall wird ein leeres JSON Objekt zurückgegeben.
+
+  contact:
+    name: Thomas Tursics
+    email: thomas@tursics.de
+  version: 1.0.0
+
+servers:
+  - url: 'https://data.europa.eu/de'
+    description: Das offizielle Portal für Daten zu Europa
