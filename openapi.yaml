@@ -17,5 +17,84 @@ info:
   version: 1.0.0
 
 servers:
-  - url: 'https://data.europa.eu/de'
+  - url: 'https://data.europa.eu/api/hub'
     description: Das offizielle Portal für Daten zu Europa
+  - url: 'https://www.sozial-informations-system.de/api'
+    description: Prototyp Sozial-Informations-System Berlin
+
+paths:
+  /search/search:
+    get:
+      summary: tbd.
+      description: tbd.
+      parameters:
+        - name: q
+          in: query
+          description: tbd.
+          required: false
+          allowEmptyValue: true
+          schema:
+            type: string
+        - name: filter
+          in: query
+          description: 'Zeige alle Datensätze "dataset" oder Kataloge "catalogue". Default: dataset'
+          required: false
+          schema:
+            type: string
+            enum: [dataset, catalogue]
+        - name: limit
+          example: 15
+          in: query
+          description: 'Anzahl Datensätze pro Seite. Default: 15'
+          required: false
+          schema:
+            type: integer
+        - name: page
+          example: 0
+          in: query
+          description: 'Aktuelle Seite. Default: 0'
+          required: false
+          schema:
+            type: integer
+        - name: sort
+          in: query
+          description: 'Aktuelle Sortierung, Beispiele sind relevance%2Bdesc,+modification_date%2Bdesc,+title.de%2Basc und deadline%2Bdesc,relevance%2Bdesc,modification_date%2Bdesc,title.en%2Basc'
+          required: false
+          schema:
+            type: string
+        - name: facetOperator
+          in: query
+          description: 'Operator für die Filtereinstellung. UND oder ODER. Default: AND'
+          required: false
+          schema:
+            type: string
+            enum: [AND, OR]
+        - name: facetGroupOperator
+          in: query
+          description: 'Operator für ???. UND oder ODER. Default: AND'
+          required: false
+          schema:
+            type: string
+            enum: [AND, OR]
+        - name: facets
+          in: query
+          description: '??? Beispiele sind %7B%22country%22:[],%22catalog%22:[],%22categories%22:[],%22keywords%22:[],%22scoring%22:[],%22format%22:[],%22license%22:[]%7D und %7B%22type%22:[],%22legalBase%22:[],%22geocodingDescription%22:[],%22keywords%22:[],%22format%22:[]%7D'
+          required: false
+          schema:
+            type: string
+        - name: includes
+          in: query
+          description: '??? Beispiel ist id,title.de,description.de,languages,modification_date,release_date,catalog.id,catalog.title,catalog.country.id,distributions.format.title,distributions.format.id'
+          required: false
+          schema:
+            type: string
+        - name: globalAggregation
+          in: query
+          description: '???'
+          required: false
+          example: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Erfolgreich
