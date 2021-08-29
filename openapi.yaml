@@ -30,7 +30,7 @@ paths:
       parameters:
         - name: q
           in: query
-          description: tbd.
+          description: Suchtext
           required: false
           allowEmptyValue: true
           schema:
@@ -78,7 +78,7 @@ paths:
             enum: [AND, OR]
         - name: facets
           in: query
-          description: '??? Beispiele sind %7B%22country%22:[],%22catalog%22:[],%22categories%22:[],%22keywords%22:[],%22scoring%22:[],%22format%22:[],%22license%22:[]%7D und %7B%22type%22:[],%22legalBase%22:[],%22geocodingDescription%22:[],%22keywords%22:[],%22format%22:[]%7D'
+          description: '??? Beispiele sind %7B%22country%22:[],%22catalog%22:[],%22categories%22:[],%22keywords%22:[],%22scoring%22:[],%22format%22:[],%22license%22:[]%7D und %7B%22type%22:[],%22legalBase%22:[],%22geocodingDescription%22:[],%22keywords%22:[],%22format%22:[]%7D und %7B%22country%22:[],%22catalog%22:[%22govdata%22],%22categories%22:[],%22keywords%22:[],%22scoring%22:[],%22format%22:[],%22license%22:[]%7D'
           required: false
           schema:
             type: string
@@ -95,6 +95,18 @@ paths:
           example: false
           schema:
             type: boolean
+      responses:
+        '200':
+          description: Erfolgreich
+  '/search/datasets/{datasetId}':
+    get:
+      summary: tbd.
+      parameters:
+        - name: datasetId
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Erfolgreich
