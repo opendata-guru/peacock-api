@@ -98,6 +98,10 @@ paths:
       responses:
         '200':
           description: Erfolgreich
+          content:
+            text/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ResponseSearch'
   '/search/datasets/{datasetId}':
     get:
       summary: tbd.
@@ -110,3 +114,152 @@ paths:
       responses:
         '200':
           description: Erfolgreich
+components:
+  schemas:
+    Empty:
+      title: Fehler/Leer
+      type: object
+      description: >-
+        Wird zurückgegeben im Fehlerfall oder wenn die Schnittstelle deaktiviert wurde
+    ResponseSearch:
+      type: object
+      title: Antwort mit Datensatzliste
+      properties:
+        success:
+          type: boolean
+          example: true
+        result:
+          type: object
+          properties:
+            index:
+              type: string
+              example: 'dataset'
+            count:
+              type: integer
+              example: 1
+            facets:
+              type: array
+              items:
+                type: object
+            results:
+              type: array
+              description: Liste der Datensätze
+              items:
+                $ref: '#/components/schemas/SearchDataset'
+    CountryNetherlands:
+      type: object
+      properties:
+        title:
+          type: string
+          example: 'Netherlands'
+        id:
+          type: string
+          example: 'nl'
+    SearchDataset:
+      type: object
+      properties:
+        country:
+          $ref: '#/components/schemas/CountryNetherlands'
+        keywords:
+          type: object
+          example: null
+        catalog:
+          type: object
+          properties:
+            license:
+              type: object
+              example: null
+            country:
+              $ref: '#/components/schemas/CountryNetherlands'
+            spatial_resource:
+              type: object
+              example: null
+            description:
+              type: object
+              properties:
+                en:
+                  type: object
+                  example: 'Open Data Portal Netherlands'
+
+      type: object
+      properties:
+        lastModified:
+          type: number
+          description: Zeitstempel der letzten Änderung
+          example: 1499681492000
+        title:
+          type: string
+          description: Titel
+          example: Botschaft der Musterstaaten
+        leader:
+          type: string
+          description: Leiter
+          example: Herr/Frau Mustermann/-frau
+        locales:
+          type: string
+          description: Sprachen
+          example: 'Deutsch, Englisch'
+        country:
+          type: string
+          description: Land
+          example: Deutschland
+        zip:
+          type: string
+          description: Postleitzahl
+          example: '12345'
+        city:
+          type: string
+          description: Stadt
+          example: Musterstadt
+        region:
+          type: string
+          description: Region
+          example: Musterregion
+        street:
+          type: string
+          description: Straße
+          example: Hauptstraße
+        number:
+          type: string
+          description: Hausnummer
+          example: '12'
+        departments:
+          type: string
+          description: Abteilungen
+          example: Handelsabteilung Tel. +49
+        fax:
+          type: string
+          description: Faxnummer
+          example: +49 123 456789
+        telefone:
+          type: string
+          description: Telefonnummer
+          example: +49 123 456789
+        mail:
+          type: string
+          description: E-Mail
+          example: extern@diplo.de
+        misc:
+          type: string
+          description: Sonstiges
+          example: Sonstige Anmerkungen
+        url:
+          type: string
+          description: Externer Link
+          example: 'https://extern.diplo.de'
+        postal:
+          type: string
+          description: Postfach
+          example: 'Hauptstraße 12, 12345 Musterstadt'
+        type:
+          type: string
+          description: Adresstyp
+          example: Botschaft
+        remark:
+          type: string
+          description: Hinweis
+          example: Sonntag geschlossen
+        open:
+          type: string
+          description: Öffnungszeiten
+          example: '10:00-18:00'
